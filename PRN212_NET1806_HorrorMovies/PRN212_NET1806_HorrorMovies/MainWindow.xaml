@@ -8,17 +8,17 @@
         Title="Horror Movies" Height="503" Width="736" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
 
-        <DataGrid x:Name="dgvMovie" HorizontalAlignment="Left" Height="177" Margin="15,176,0,0" VerticalAlignment="Top" Width="540"/>
+        <DataGrid x:Name="dgvMovie" HorizontalAlignment="Left" Height="177" Margin="15,176,0,0" VerticalAlignment="Top" Width="540" SelectionChanged="dgvMovie_SelectionChanged"/>
         <Label Content="Movies Management" HorizontalAlignment="Left" Margin="15,10,0,0" VerticalAlignment="Top" FontSize="20"/>
         <Rectangle HorizontalAlignment="Left" Height="77" Margin="15,65,0,0" Stroke="Black" VerticalAlignment="Top" Width="540"/>
         <Label Content="From Year" HorizontalAlignment="Left" Margin="29,91,0,0" VerticalAlignment="Top"/>
         <Label Content="To Year" HorizontalAlignment="Left" Margin="244,93,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="txtFromYear" HorizontalAlignment="Left" Margin="97,91,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Padding="5,5,5,5"/>
         <TextBox x:Name="txtToYear" HorizontalAlignment="Left" Margin="301,93,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Padding="5,5,5,5"/>
-        <Button x:Name="btnSearch" Content="Search Movie" HorizontalAlignment="Left" Margin="439,93,0,0" VerticalAlignment="Top" Padding="10,5,10,5"/>
+        <Button x:Name="btnSearch" Content="Search Movie" HorizontalAlignment="Left" Margin="439,93,0,0" VerticalAlignment="Top" Padding="10,5,10,5" Click="btnSearch_Click"/>
         <Button x:Name="btnCreate" Content="Create" HorizontalAlignment="Left" Margin="598,176,0,0" VerticalAlignment="Top" Click="btnExport_Click" Padding="10,5,10,5" Width="76" />
         <Button x:Name="btnUpdate" Content="Update" HorizontalAlignment="Left" Margin="598,225,0,0" VerticalAlignment="Top" Click="btnExport_Click" Padding="10,5,10,5" Width="76" />
-        <Button x:Name="btnDelete" Content="Delete" HorizontalAlignment="Left" Margin="598,277,0,0" VerticalAlignment="Top" Click="btnExport_Click" Padding="10,5,10,5" Width="76" />
+        <Button x:Name="btnDelete" Content="Delete" HorizontalAlignment="Left" Margin="598,277,0,0" VerticalAlignment="Top" Click="btnDelete_Click" Padding="10,5,10,5" Width="76" />
         <Button x:Name="btnExit" Content="Exit" HorizontalAlignment="Left" Margin="598,325,0,0" VerticalAlignment="Top" Click="btnExport_Click" Padding="10,5,10,5" Width="76" />
 
         <Label Content="Export To Google Sheet" HorizontalAlignment="Left" Margin="21,406,0,0" VerticalAlignment="Top"/>

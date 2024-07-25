@@ -58,5 +58,14 @@ namespace Repositories.Repositories
             _context.Movies.RemoveRange(movies);
             _context.SaveChanges();
         }
+
+        public List<Movie> SearchYear(int start, int end)
+        {
+            var movies = _context.Movies.Where(x => x.MovieYear.HasValue &&
+                                               x.MovieYear.Value >= start &&
+                                               x.MovieYear.Value <= end)
+                                                .OrderBy(xx => xx.MovieYear.Value).ToList();
+            return movies;
+        }
     }
 }
