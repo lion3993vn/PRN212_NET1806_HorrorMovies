@@ -46,7 +46,7 @@ namespace PRN212_NET1806_HorrorMovies
 
                     var item = _exportService.ExportDataAsync(name);
                     await item;
-                    System.Windows.MessageBox.Show("the data has been successfully written to google sheet.");
+                    System.Windows.MessageBox.Show("the data has been successfully written to google sheet!");
                 }
 
             }
