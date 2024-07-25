@@ -33,7 +33,7 @@ namespace Services.Services
 
             UserCredential credential;
 
-            using (var stream = new FileStream("credentials.json", FileMode.Open, FileAccess.Read))
+            using (var stream = new FileStream("appsettings.json", FileMode.Open, FileAccess.Read))
             {
                 string credPath = "token.json";
                 credential = await GoogleWebAuthorizationBroker.AuthorizeAsync(
