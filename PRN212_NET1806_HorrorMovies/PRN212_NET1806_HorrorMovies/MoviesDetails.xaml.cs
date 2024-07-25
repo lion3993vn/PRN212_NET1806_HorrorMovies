@@ -24,4 +24,6 @@ namespace PRN212_NET1806_HorrorMovies
             InitializeComponent();
         }
     }
+
+
 }
