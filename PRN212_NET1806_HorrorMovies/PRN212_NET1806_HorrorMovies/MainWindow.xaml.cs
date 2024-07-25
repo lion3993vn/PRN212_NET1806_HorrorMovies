@@ -61,5 +61,10 @@ namespace PRN212_NET1806_HorrorMovies
             var list = new List<string> { "Movie", "User Review", "Critic Review" };
             return list;
         }
+
+        private void dgvMovie_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
