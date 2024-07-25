@@ -51,13 +51,15 @@ namespace Services.Services
             });
 
             var spreadsheetId = "1gVMy4SoWmYTF7mhGYtlh04X2c9JtJjGDSVLs-lWY9Bg";
-            var range = "Sheet1!A1";
+            var sheetName = "Sheet1";
 
-            // Clear existing data in the sheet
-            var clearRequest = service.Spreadsheets.Values.Clear(new ClearValuesRequest(), spreadsheetId, range);
+            // Clear existing data in the sheet by specifying a wide range
+            var clearRange = $"{sheetName}!A1:Z1000";  // Adjust the range as needed to cover all your data
+            var clearRequest = service.Spreadsheets.Values.Clear(new ClearValuesRequest(), spreadsheetId, clearRange);
             var clearResponse = await clearRequest.ExecuteAsync();
 
             // Update with new data
+            var range = $"{sheetName}!A1";
             var valueRange = new ValueRange
             {
                 Values = data

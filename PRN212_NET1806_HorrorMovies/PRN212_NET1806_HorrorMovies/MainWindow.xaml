@@ -5,8 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PRN212_NET1806_HorrorMovies"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded">
     <Grid>
+        <Button x:Name="btnExport" Content="Export" HorizontalAlignment="Left" Margin="101,58,0,0" VerticalAlignment="Top" Click="btnExport_Click"/>
+        <ComboBox x:Name="cbbTable" HorizontalAlignment="Left" Margin="175,58,0,0" VerticalAlignment="Top" Width="120"/>
 
     </Grid>
 </Window>
