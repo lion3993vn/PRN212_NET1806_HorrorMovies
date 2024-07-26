@@ -1,4 +1,5 @@
-﻿using Repositories.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using Repositories.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -48,7 +49,7 @@ namespace Repositories.Repositories
 
         public List<CriticReview> GetAll()
         {
-            return _context.CriticReviews.ToList();
+            return _context.CriticReviews.Include(x => x.Movie).ToList();
         }
 
         public void DeleteAll(List<CriticReview> reviews)

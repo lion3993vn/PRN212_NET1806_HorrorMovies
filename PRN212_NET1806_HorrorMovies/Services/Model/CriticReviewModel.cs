@@ -10,7 +10,7 @@ namespace Services.Model
 {
     public class CriticReviewModel : ClassMap<CriticReview>
     {
-        public CriticReviewModel() 
+        public CriticReviewModel()
         {
             Map(m => m.CreationDate).Name("creationDate");
             Map(m => m.CriticName).Name("criticName");
@@ -23,4 +23,29 @@ namespace Services.Model
             Map(m => m.MovieId).Name("movieId");
         }
     }
+
+    public class CriticReviewShowModel
+    {
+        public int ReviewId { get; set; }
+
+        public DateTime? CreationDate { get; set; }
+
+        public string? CriticName { get; set; }
+
+        public bool? IsTopCritic { get; set; }
+
+        public string? PublicationName { get; set; }
+
+        public string? ReviewUrl { get; set; }
+
+        public string? Quote { get; set; }
+
+        public string? ScoreSentiment { get; set; }
+
+        public string? MovieId { get; set; }
+
+        public string? MovieTitle { get; set; }
+
+    }
+
 }

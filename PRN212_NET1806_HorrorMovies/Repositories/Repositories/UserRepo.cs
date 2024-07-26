@@ -57,7 +57,7 @@ namespace Repositories.Repositories
 
         public List<UserReview> GetAll()
         {
-            return _context.UserReviews.ToList();
+            return _context.UserReviews.Include(x => x.Movie).ToList();
         }
 
         public void DeleteAll(List<UserReview> user)
