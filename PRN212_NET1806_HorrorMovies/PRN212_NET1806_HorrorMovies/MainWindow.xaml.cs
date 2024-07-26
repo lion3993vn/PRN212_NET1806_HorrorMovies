@@ -21,6 +21,9 @@ namespace PRN212_NET1806_HorrorMovies
     {
         private readonly AddCSVService _addCsvService;
         private readonly ExportCsvService _exportService;
+        private readonly MoviesService _moviesService;
+        private readonly UserReviewServices _userReviewServices;
+        private readonly CriticReviewServices _criticReviewServices;
         private readonly MovieService _movieService;
         private Movie _selected = null;
 
@@ -29,6 +32,9 @@ namespace PRN212_NET1806_HorrorMovies
             InitializeComponent();
             _addCsvService = new AddCSVService();
             _exportService = new ExportCsvService();
+            _moviesService = new MoviesService();
+            _userReviewServices = new UserReviewServices();
+            _criticReviewServices = new CriticReviewServices();
             _movieService = new MovieService();
         }
 
@@ -130,6 +136,64 @@ namespace PRN212_NET1806_HorrorMovies
             if (answer == System.Windows.Forms.DialogResult.No)
                 return;
 
+        private void loadGrid()
+        {
+            dgvMovie.AutoGenerateColumns = true;
+            dgvMovie.ItemsSource = null;
+            dgvMovie.ItemsSource = _moviesService.getAll();
+
+            btnUpdate.IsEnabled = true;
+            btnDelete.IsEnabled = true;
+            btnSearch.IsEnabled = true;
+            btnCreate.IsEnabled = true;
+        }
+
+        private void dgvMovie_Loaded(object sender, RoutedEventArgs e)
+        {
+            loadGrid();
+        }
+
+        private void btnImport_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                string filename = "";
+                // Create OpenFileDialog
+                Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+
+                // Set filter for file extension and default file extension
+                dlg.DefaultExt = ".csv";
+                dlg.Filter = "Text documents (.csv)|*.csv";
+
+                // Display OpenFileDialog by calling ShowDialog method
+                Nullable<bool> result = dlg.ShowDialog();
+
+                // Get the selected file name and display in a TextBox
+                if (result == true)
+                {
+                    // Open document
+                    filename = dlg.FileName;
+                }
+
+                _addCsvService.AddCSV(filename);
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnShowReviews_Click(object sender, RoutedEventArgs e)
+        {
+            dgvMovie.AutoGenerateColumns = true;
+            dgvMovie.ItemsSource = null;
+            dgvMovie.ItemsSource = _userReviewServices.getAll();
+
+            btnUpdate.IsEnabled = false;
+            btnDelete.IsEnabled = false;
+            btnSearch.IsEnabled = false;
+            btnCreate.IsEnabled = false;
+        }
             try
             {
                 _movieService.DeleteMovie(_selected);
@@ -222,5 +286,26 @@ namespace PRN212_NET1806_HorrorMovies
         //}
 
 
+        private void btnShowMovies_Click(object sender, RoutedEventArgs e)
+        {
+            loadGrid();
+        }
+
+        private void btnShowCriticReview_Click(object sender, RoutedEventArgs e)
+        {
+            dgvMovie.AutoGenerateColumns = true;
+            dgvMovie.ItemsSource = null;
+            dgvMovie.ItemsSource = _criticReviewServices.getAll();
+
+            btnUpdate.IsEnabled = false;
+            btnDelete.IsEnabled = false;
+            btnSearch.IsEnabled = false;
+            btnCreate.IsEnabled = false;
+        }
+
+        private void btnExit_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
     }
 }

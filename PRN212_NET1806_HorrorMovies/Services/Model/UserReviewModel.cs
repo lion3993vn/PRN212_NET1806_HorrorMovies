@@ -21,4 +21,24 @@ namespace Services.Model
             Map(m => m.MovieId).Name("movieId");
         }
     }
+
+    public class UserReviewShowModel()
+    {
+        public string UserId { get; set; } = null!;
+
+        public float? Rating { get; set; }
+
+        public bool? IsSuperReviewer { get; set; }
+
+        public bool? HasSpoilers { get; set; }
+
+        public bool? HasProfanity { get; set; }
+
+        public DateTime? CreationDate { get; set; }
+
+        public string? MovieId { get; set; }
+
+        public string? MovieTitle { get; set; }
+
+    }
 }
