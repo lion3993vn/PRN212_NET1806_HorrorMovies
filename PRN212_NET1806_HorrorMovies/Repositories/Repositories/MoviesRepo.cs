@@ -1,4 +1,5 @@
-﻿using Repositories.Entities;
+﻿using Microsoft.IdentityModel.Tokens;
+using Repositories.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -59,13 +60,36 @@ namespace Repositories.Repositories
             _context.SaveChanges();
         }
 
-        public List<Movie> SearchYear(int start, int end)
+        public List<Movie> SearchYear(int? start, int? end, string? name)
         {
-            var movies = _context.Movies.Where(x => x.MovieYear.HasValue &&
+            var movies = _context.Movies.AsQueryable();
+                                        
+            
+            if (!string.IsNullOrEmpty(name))
+            {
+                movies = movies.Where(x => x.MovieTitle.Contains(name));
+            }
+
+            movies = movies.Where(x => x.MovieYear.HasValue &&
                                                x.MovieYear.Value >= start &&
                                                x.MovieYear.Value <= end)
-                                                .OrderBy(xx => xx.MovieYear.Value).ToList();
-            return movies;
+                                                .OrderBy(xx => xx.MovieYear.Value);
+
+            return movies.ToList();
         }
+
+        public List<Movie> SearchName(string name)
+        {
+            var movies = _context.Movies.AsQueryable();
+
+
+            if (!string.IsNullOrEmpty(name))
+            {
+                movies = movies.Where(x => x.MovieTitle.Contains(name));
+            }
+
+            return movies.ToList();
+        }
+
     }
 }

@@ -5,31 +5,33 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PRN212_NET1806_HorrorMovies"
         mc:Ignorable="d"
-        Title="Horror Movies" Height="503" Width="736" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="Horror Movies" Height="585" Width="813" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
 
-        <DataGrid x:Name="dgvMovie" HorizontalAlignment="Left" Height="177" Margin="15,176,0,0" VerticalAlignment="Top" Width="540" SelectionChanged="dgvMovie_SelectionChanged"/>
+        <DataGrid x:Name="dgvMovie" HorizontalAlignment="Left" Height="196" Margin="15,239,0,0" VerticalAlignment="Top" Width="659" SelectionChanged="dgvMovie_SelectionChanged"/>
         <Label Content="Movies Management" HorizontalAlignment="Left" Margin="15,10,0,0" VerticalAlignment="Top" FontSize="20"/>
-        <Rectangle HorizontalAlignment="Left" Height="77" Margin="15,65,0,0" Stroke="Black" VerticalAlignment="Top" Width="540"/>
-        <Label Content="From Year" HorizontalAlignment="Left" Margin="29,91,0,0" VerticalAlignment="Top"/>
-        <Label Content="To Year" HorizontalAlignment="Left" Margin="244,93,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtFromYear" HorizontalAlignment="Left" Margin="97,91,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Padding="5,5,5,5"/>
-        <TextBox x:Name="txtToYear" HorizontalAlignment="Left" Margin="301,93,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Padding="5,5,5,5"/>
-        <Button x:Name="btnSearch" Content="Search Movie" HorizontalAlignment="Left" Margin="439,93,0,0" VerticalAlignment="Top" Padding="10,5,10,5" Click="btnSearch_Click"/>
-        <Button x:Name="btnCreate" Content="Create" HorizontalAlignment="Left" Margin="598,176,0,0" VerticalAlignment="Top" Click="btnExport_Click" Padding="10,5,10,5" Width="76" />
-        <Button x:Name="btnUpdate" Content="Update" HorizontalAlignment="Left" Margin="598,225,0,0" VerticalAlignment="Top" Click="btnExport_Click" Padding="10,5,10,5" Width="76" />
-        <Button x:Name="btnDelete" Content="Delete" HorizontalAlignment="Left" Margin="598,277,0,0" VerticalAlignment="Top" Click="btnDelete_Click" Padding="10,5,10,5" Width="76" />
-        <Button x:Name="btnExit" Content="Exit" HorizontalAlignment="Left" Margin="598,325,0,0" VerticalAlignment="Top" Click="btnExport_Click" Padding="10,5,10,5" Width="76" />
+        <Rectangle HorizontalAlignment="Left" Height="135" Margin="15,65,0,0" Stroke="Black" VerticalAlignment="Top" Width="621"/>
+        <Label Content="From Year" HorizontalAlignment="Left" Margin="25,90,0,0" VerticalAlignment="Top"/>
+        <Label Content="To Year" HorizontalAlignment="Left" Margin="230,89,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtFromYear" HorizontalAlignment="Left" Margin="91,89,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Padding="5,5,5,5"/>
+        <TextBox x:Name="txtToYear" HorizontalAlignment="Left" Margin="284,87,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Padding="5,5,5,5"/>
+        <Button x:Name="btnSearch" Content="Search Movie" HorizontalAlignment="Left" Margin="297,151,0,0" VerticalAlignment="Top" Padding="10,5,10,5" Click="btnSearch_Click"/>
+        <Button x:Name="btnCreate" Content="Create" HorizontalAlignment="Left" Margin="704,258,0,0" VerticalAlignment="Top" Click="btnExport_Click" Padding="10,5,10,5" Width="76" />
+        <Button x:Name="btnUpdate" Content="Update" HorizontalAlignment="Left" Margin="704,307,0,0" VerticalAlignment="Top" Click="btnExport_Click" Padding="10,5,10,5" Width="76" />
+        <Button x:Name="btnDelete" Content="Delete" HorizontalAlignment="Left" Margin="704,359,0,0" VerticalAlignment="Top" Click="btnDelete_Click" Padding="10,5,10,5" Width="76" />
+        <Button x:Name="btnExit" Content="Exit" HorizontalAlignment="Left" Margin="704,407,0,0" VerticalAlignment="Top" Padding="10,5,10,5" Width="76" />
 
-        <Label Content="Export To Google Sheet" HorizontalAlignment="Left" Margin="21,406,0,0" VerticalAlignment="Top"/>
-        <Rectangle HorizontalAlignment="Left" Height="60" Margin="176,392,0,0" Stroke="Black" VerticalAlignment="Top" Width="250"/>
-        <Button x:Name="btnExport" Content="Export" HorizontalAlignment="Left" Margin="344,408,0,0" VerticalAlignment="Top" Click="btnExport_Click" Padding="10,5,10,5"/>
-        <Rectangle HorizontalAlignment="Left" Height="60" Margin="460,392,0,0" Stroke="Black" VerticalAlignment="Top" Width="234"/>
-        <ComboBox x:Name="cbbTable" HorizontalAlignment="Left" Margin="208,409,0,0" VerticalAlignment="Top" Width="120" Padding="5,5,5,5"/>
-        <Label Content="Inport From CSV" HorizontalAlignment="Left" Margin="484,410,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="btnImport" Content="Import" HorizontalAlignment="Left" Margin="598,409,0,0" VerticalAlignment="Top" Click="btnExport_Click" Padding="10,5,10,5" Width="76"/>
-        <Button Content="Show User Reviews" HorizontalAlignment="Left" Margin="568,65,0,0" VerticalAlignment="Top" Padding="5,5,5,5" Width="121"/>
-        <Button Content="Show Critic Reviews" HorizontalAlignment="Left" Margin="568,114,0,0" VerticalAlignment="Top" Padding="5,5,5,5" Width="121"/>
+        <Label Content="Export To Google Sheet" HorizontalAlignment="Left" Margin="21,478,0,0" VerticalAlignment="Top"/>
+        <Rectangle HorizontalAlignment="Left" Height="60" Margin="176,464,0,0" Stroke="Black" VerticalAlignment="Top" Width="250"/>
+        <Button x:Name="btnExport" Content="Export" HorizontalAlignment="Left" Margin="344,480,0,0" VerticalAlignment="Top" Click="btnExport_Click" Padding="10,5,10,5"/>
+        <Rectangle HorizontalAlignment="Left" Height="60" Margin="460,464,0,0" Stroke="Black" VerticalAlignment="Top" Width="234"/>
+        <ComboBox x:Name="cbbTable" HorizontalAlignment="Left" Margin="208,481,0,0" VerticalAlignment="Top" Width="120" Padding="5,5,5,5"/>
+        <Label Content="Inport From CSV" HorizontalAlignment="Left" Margin="484,482,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btnImport" Content="Import" HorizontalAlignment="Left" Margin="598,481,0,0" VerticalAlignment="Top" Click="btnExport_Click" Padding="10,5,10,5" Width="76"/>
+        <Button Content="Show User Reviews" HorizontalAlignment="Left" Margin="659,65,0,0" VerticalAlignment="Top" Padding="5,5,5,5" Width="121"/>
+        <Button Content="Show Critic Reviews" HorizontalAlignment="Left" Margin="659,114,0,0" VerticalAlignment="Top" Padding="5,5,5,5" Width="121"/>
+        <Label Content="Movie Name" HorizontalAlignment="Left" Margin="418,89,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtName" HorizontalAlignment="Left" Margin="501,90,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Padding="5,5,5,5"/>
 
 
     </Grid>

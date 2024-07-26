@@ -27,10 +27,14 @@ namespace Services.Services
             _movieRepo.DeleteMovie(x);
         }
 
-        public List<Movie> GetSearchYear(int start, int end)
+        public List<Movie> GetSearchYear(int? start, int? end, string? name)
         {
-            return _movieRepo.SearchYear(start, end);
+            return _movieRepo.SearchYear(start, end, name);
         }
 
+        public List<Movie> GetSearchName(string? name)
+        {
+            return _movieRepo.SearchName(name);
+        }
     }
 }
