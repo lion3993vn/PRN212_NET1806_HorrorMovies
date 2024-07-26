@@ -53,6 +53,13 @@ namespace Repositories.Repositories
             return check;
         }
 
+        public Movie GetMovieByRank(int rank)
+        {
+            var check = _context.Movies.SingleOrDefault(x => x.MovieRank == rank);
+
+            return check;
+        }
+
         public void DeleteAll(List<Movie> movies)
         {
             _context.Movies.RemoveRange(movies);

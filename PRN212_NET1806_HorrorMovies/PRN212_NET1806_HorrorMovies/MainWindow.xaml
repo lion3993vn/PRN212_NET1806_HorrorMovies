@@ -16,8 +16,12 @@
         <TextBox x:Name="txtFromYear" HorizontalAlignment="Left" Margin="97,91,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Padding="5,5,5,5"/>
         <TextBox x:Name="txtToYear" HorizontalAlignment="Left" Margin="301,93,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Padding="5,5,5,5"/>
         <Button x:Name="btnSearch" Content="Search Movie" HorizontalAlignment="Left" Margin="439,93,0,0" VerticalAlignment="Top" Padding="10,5,10,5"/>
-        <Button x:Name="btnCreate" Content="Create" HorizontalAlignment="Left" Margin="598,176,0,0" VerticalAlignment="Top" Click="btnExport_Click" Padding="10,5,10,5" Width="76" />
-        <Button x:Name="btnUpdate" Content="Update" HorizontalAlignment="Left" Margin="598,225,0,0" VerticalAlignment="Top" Click="btnExport_Click" Padding="10,5,10,5" Width="76" />
+        <Button x:Name="btnCreate" Content="Create" HorizontalAlignment="Left" Margin="598,176,0,0" VerticalAlignment="Top"
+                Padding="10,5,10,5" Width="76"
+                Click="btnCreate_Click" />
+        <Button x:Name="btnUpdate" Content="Update" HorizontalAlignment="Left" Margin="598,225,0,0" VerticalAlignment="Top"
+                Click="btnUpdate_Click"
+                Padding="10,5,10,5" Width="76" />
         <Button x:Name="btnDelete" Content="Delete" HorizontalAlignment="Left" Margin="598,277,0,0" VerticalAlignment="Top" Click="btnExport_Click" Padding="10,5,10,5" Width="76" />
         <Button x:Name="btnExit" Content="Exit" HorizontalAlignment="Left" Margin="598,325,0,0" VerticalAlignment="Top" Click="btnExport_Click" Padding="10,5,10,5" Width="76" />
 
@@ -27,7 +31,9 @@
         <Rectangle HorizontalAlignment="Left" Height="60" Margin="460,392,0,0" Stroke="Black" VerticalAlignment="Top" Width="234"/>
         <ComboBox x:Name="cbbTable" HorizontalAlignment="Left" Margin="208,409,0,0" VerticalAlignment="Top" Width="120" Padding="5,5,5,5"/>
         <Label Content="Inport From CSV" HorizontalAlignment="Left" Margin="484,410,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="btnImport" Content="Import" HorizontalAlignment="Left" Margin="598,409,0,0" VerticalAlignment="Top" Click="btnExport_Click" Padding="10,5,10,5" Width="76"/>
+        <Button x:Name="btnImport" Content="Import" HorizontalAlignment="Left" Margin="598,409,0,0" VerticalAlignment="Top"
+                Click="btnImport_Click"
+                Padding="10,5,10,5" Width="76"/>
         <Button Content="Show User Reviews" HorizontalAlignment="Left" Margin="568,65,0,0" VerticalAlignment="Top" Padding="5,5,5,5" Width="121"/>
         <Button Content="Show Critic Reviews" HorizontalAlignment="Left" Margin="568,114,0,0" VerticalAlignment="Top" Padding="5,5,5,5" Width="121"/>
 
