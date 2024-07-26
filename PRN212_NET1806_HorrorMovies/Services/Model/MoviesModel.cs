@@ -19,4 +19,18 @@ namespace Services.Model
             Map(m => m.MovieRank).Name("movieRank");
         }
     }
+
+    public class MoviesModelShow
+    {
+        public string MovieId { get; set; } = null!;
+
+        public string? MovieTitle { get; set; }
+
+        public int? MovieYear { get; set; }
+
+        public string? MovieUrl { get; set; }
+
+        public int? MovieRank { get; set; }
+
+    }
 }
