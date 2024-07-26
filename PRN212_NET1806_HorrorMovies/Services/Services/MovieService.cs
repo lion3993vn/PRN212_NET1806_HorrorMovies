@@ -1,5 +1,6 @@
 ﻿using Repositories.Entities;
 using Repositories.Repositories;
+using Services.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,19 +23,43 @@ namespace Services.Services
             return _movieRepo.GetAll();
         }
 
-        public void DeleteMovie(Movie x)
+        public void DeleteMovie(MoviesModelShow x)
         {
-            _movieRepo.DeleteMovie(x);
+            Movie y = new Movie()
+            {
+                MovieId = x.MovieId,
+                MovieRank = x.MovieRank,
+                MovieTitle = x.MovieTitle,
+                MovieUrl = x.MovieUrl,
+                MovieYear = x.MovieYear,
+            };
+            _movieRepo.DeleteMovie(y);
         }
 
-        public List<Movie> GetSearchYear(int? start, int? end, string? name)
+        public List<MoviesModelShow> GetSearchYear(int? start, int? end, string? name)
         {
-            return _movieRepo.SearchYear(start, end, name);
+            var list = _movieRepo.SearchYear(start, end, name);
+            return list.Select(x => new MoviesModelShow()
+            {
+                MovieId = x.MovieId,
+                MovieRank = x.MovieRank,
+                MovieTitle = x.MovieTitle,
+                MovieUrl = x.MovieUrl,
+                MovieYear = x.MovieYear,
+            }).ToList();
         }
 
-        public List<Movie> GetSearchName(string? name)
+        public List<MoviesModelShow> GetSearchName(string? name)
         {
-            return _movieRepo.SearchName(name);
+            var list =  _movieRepo.SearchName(name);
+            return list.Select(x => new MoviesModelShow()
+            {
+                MovieId = x.MovieId,
+                MovieRank = x.MovieRank,
+                MovieTitle = x.MovieTitle,
+                MovieUrl = x.MovieUrl,
+                MovieYear = x.MovieYear,
+            }).ToList();
         }
     }
 }
