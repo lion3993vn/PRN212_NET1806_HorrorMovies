@@ -8,17 +8,17 @@
         Title="Horror Movies" Height="585" Width="813" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
 
-        <DataGrid x:Name="dgvMovie" HorizontalAlignment="Left" Height="196" Margin="15,239,0,0" VerticalAlignment="Top" Width="659" Loaded="dgvMovie_Loaded"/>
+        <DataGrid x:Name="dgvMovie" HorizontalAlignment="Left" Height="196" Margin="15,239,0,0" VerticalAlignment="Top" Width="659" SelectionChanged="dgvMovie_SelectionChanged"/>
         <Label Content="Movies Management" HorizontalAlignment="Left" Margin="15,10,0,0" VerticalAlignment="Top" FontSize="20"/>
         <Rectangle HorizontalAlignment="Left" Height="135" Margin="15,65,0,0" Stroke="Black" VerticalAlignment="Top" Width="621"/>
         <Label Content="From Year" HorizontalAlignment="Left" Margin="25,90,0,0" VerticalAlignment="Top"/>
         <Label Content="To Year" HorizontalAlignment="Left" Margin="230,89,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="txtFromYear" HorizontalAlignment="Left" Margin="91,89,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Padding="5,5,5,5"/>
         <TextBox x:Name="txtToYear" HorizontalAlignment="Left" Margin="284,87,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Padding="5,5,5,5"/>
-        <Button x:Name="btnSearch" Content="Search Movie" HorizontalAlignment="Left" Margin="297,151,0,0" VerticalAlignment="Top" Padding="10,5,10,5"/>
+        <Button x:Name="btnSearch" Content="Search Movie" HorizontalAlignment="Left" Margin="297,151,0,0" VerticalAlignment="Top" Padding="10,5,10,5" Click="btnSearch_Click"/>
         <Button x:Name="btnCreate" Content="Create" HorizontalAlignment="Left" Margin="704,258,0,0" VerticalAlignment="Top" Click="btnExport_Click" Padding="10,5,10,5" Width="76" />
         <Button x:Name="btnUpdate" Content="Update" HorizontalAlignment="Left" Margin="704,307,0,0" VerticalAlignment="Top" Click="btnExport_Click" Padding="10,5,10,5" Width="76" />
-        <Button x:Name="btnDelete" Content="Delete" HorizontalAlignment="Left" Margin="704,359,0,0" VerticalAlignment="Top" Click="btnExport_Click" Padding="10,5,10,5" Width="76" />
+        <Button x:Name="btnDelete" Content="Delete" HorizontalAlignment="Left" Margin="704,359,0,0" VerticalAlignment="Top" Padding="10,5,10,5" Width="76" Click="btnDelete_Click" />
         <Button x:Name="btnExit" Content="Exit" HorizontalAlignment="Left" Margin="704,407,0,0" VerticalAlignment="Top" Click="btnExit_Click" Padding="10,5,10,5" Width="76" />
 
         <Label Content="Export To Google Sheet" HorizontalAlignment="Left" Margin="21,478,0,0" VerticalAlignment="Top"/>
@@ -31,8 +31,8 @@
         <Button x:Name="btnShowReviews" Content="Show User Reviews" HorizontalAlignment="Left" Margin="659,65,0,0" VerticalAlignment="Top" Padding="5,5,5,5" Width="121" Click="btnShowReviews_Click"/>
         <Button x:Name="btnShowCriticReview" Content="Show Critic Reviews" HorizontalAlignment="Left" Margin="659,114,0,0" VerticalAlignment="Top" Padding="5,5,5,5" Width="121" Click="btnShowCriticReview_Click"/>
         <Label Content="Movie Name" HorizontalAlignment="Left" Margin="418,89,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtToYear_Copy" HorizontalAlignment="Left" Margin="501,90,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Padding="5,5,5,5"/>
-        <Button x:Name="btnShowMovies" Content="Show Movies" HorizontalAlignment="Left" Margin="659,172,0,0" VerticalAlignment="Top" Padding="5,5,5,5" Width="121" Click="btnShowMovies_Click"/>
+        <TextBox x:Name="txtName" HorizontalAlignment="Left" Margin="501,90,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Padding="5,5,5,5"/>
+        <Button x:Name="btnShowMovies" Content="Show Movies" HorizontalAlignment="Left" Margin="659,165,0,0" VerticalAlignment="Top" Padding="5,5,5,5" Width="121" Click="btnShowMovies_Click"/>
 
 
     </Grid>

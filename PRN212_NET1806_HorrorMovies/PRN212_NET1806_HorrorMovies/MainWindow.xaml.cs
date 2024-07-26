@@ -1,9 +1,12 @@
-﻿using Services.Services;
+﻿using Repositories.Entities;
+using Services.Model;
+using Services.Services;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -22,6 +25,9 @@ namespace PRN212_NET1806_HorrorMovies
         private readonly MoviesService _moviesService;
         private readonly UserReviewServices _userReviewServices;
         private readonly CriticReviewServices _criticReviewServices;
+        private readonly MovieService _movieService;
+        private MoviesModelShow _selected = null;
+        private bool showMovie = true;
 
         public MainWindow()
         {
@@ -31,10 +37,12 @@ namespace PRN212_NET1806_HorrorMovies
             _moviesService = new MoviesService();
             _userReviewServices = new UserReviewServices();
             _criticReviewServices = new CriticReviewServices();
+            _movieService = new MovieService();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            loadGrid();
             cbbTable.ItemsSource = Table();
         }
 
@@ -44,7 +52,7 @@ namespace PRN212_NET1806_HorrorMovies
             {
                 if (cbbTable.SelectedItem == null)
                 {
-                    System.Windows.MessageBox.Show("Please choose value to export");
+                    System.Windows.MessageBox.Show("Please choose value to export", "Export file", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
                 else
                 {
@@ -52,7 +60,7 @@ namespace PRN212_NET1806_HorrorMovies
 
                     var item = _exportService.ExportDataAsync(name);
                     await item;
-                    System.Windows.MessageBox.Show("the data has been successfully written to google sheet.");
+                    System.Windows.MessageBox.Show("The data has been successfully written to google sheet!", "Export file", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
 
             }
@@ -68,6 +76,73 @@ namespace PRN212_NET1806_HorrorMovies
             return list;
         }
 
+        private void btnSearch_Click(object sender, RoutedEventArgs e)
+        {
+            //string fromYear = txtFromYear.Text;
+            //string toYear = txtToYear.Text;
+            string name = txtName.Text;
+            if (string.IsNullOrEmpty(txtFromYear.Text) && string.IsNullOrEmpty(txtToYear.Text) && string.IsNullOrEmpty(txtName.Text))
+            {
+                loadGrid();
+                return;
+            }
+            else if (string.IsNullOrEmpty(txtFromYear.Text) && string.IsNullOrEmpty(txtToYear.Text) && !string.IsNullOrEmpty(txtName.Text))
+            {
+                dgvMovie.ItemsSource = null;
+                dgvMovie.ItemsSource = _movieService.GetSearchName( txtName.Text);
+                showMovie = true;
+            }
+            else
+            {
+                if (!int.TryParse(txtFromYear.Text, out int fromYear))
+                {
+                    System.Windows.MessageBox.Show("Please enter a valid number for 'From Year' field.", "Input Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    
+                    return;
+                }
+
+                if (!int.TryParse(txtToYear.Text, out int toYear))
+                {
+                    System.Windows.MessageBox.Show("Please enter a valid number for 'To Year' field.", "Input Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    
+                    return;
+                }
+
+                if (toYear < fromYear)
+                {
+                    System.Windows.MessageBox.Show("'To Year' must be greater than 'From Year'.", "Input Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    
+                    return;
+                }
+                dgvMovie.ItemsSource = null;
+                dgvMovie.ItemsSource = _movieService.GetSearchYear(fromYear, toYear, txtName.Text);
+                showMovie = true;
+            }
+            
+        }
+
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            if (_selected == null)
+            {
+                System.Windows.MessageBox.Show("Please select a certain movie to delete!", "Select one movie", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                return;
+            }
+            DialogResult answer = (DialogResult)System.Windows.MessageBox.Show("Do you really want to delete this movie", "Confirm delete?", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (answer == System.Windows.Forms.DialogResult.No)
+                return;
+            try
+            {
+                _movieService.DeleteMovie(_selected);
+                loadGrid();
+                _selected = null;
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show("This movie cannot be deleted...!", "Error delete", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
         private void loadGrid()
         {
             dgvMovie.AutoGenerateColumns = true;
@@ -78,6 +153,7 @@ namespace PRN212_NET1806_HorrorMovies
             btnDelete.IsEnabled = true;
             btnSearch.IsEnabled = true;
             btnCreate.IsEnabled = true;
+            showMovie = true;
         }
 
         private void dgvMovie_Loaded(object sender, RoutedEventArgs e)
@@ -125,7 +201,93 @@ namespace PRN212_NET1806_HorrorMovies
             btnDelete.IsEnabled = false;
             btnSearch.IsEnabled = false;
             btnCreate.IsEnabled = false;
+            showMovie = false;
         }
+            
+        
+
+        private void dgvMovie_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (showMovie)
+            {
+                if (dgvMovie.SelectedItems.Count > 0)
+                {
+                    _selected = (MoviesModelShow)dgvMovie.SelectedItem;
+                }
+                else
+                    _selected = null;
+            }
+        }
+
+        //private void btnSearch_Click(object sender, RoutedEventArgs e)
+        //{
+        //    if (string.IsNullOrEmpty(txtFromYear.Text) && string.IsNullOrEmpty(txtToYear.Text))
+        //    {
+        //        FillDataGridView();
+        //        return;
+        //    }
+
+        //    if (!int.TryParse(txtFromYear.Text, out int fromYear))
+        //    {
+        //        System.Windows.MessageBox.Show("Please enter a valid number for 'From Year' field.", "Input Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        //        dgvMovie.ItemsSource = null;
+        //        return;
+        //    }
+
+        //    if (!int.TryParse(txtToYear.Text, out int toYear))
+        //    {
+        //        System.Windows.MessageBox.Show("Please enter a valid number for 'To Year' field.", "Input Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        //        dgvMovie.ItemsSource = null;
+        //        return;
+        //    }
+
+        //    if (toYear < fromYear)
+        //    {
+        //        System.Windows.MessageBox.Show("'To Year' must be greater than 'From Year'.", "Input Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        //        dgvMovie.ItemsSource = null;
+        //        return;
+        //    }
+
+        //    dgvMovie.ItemsSource = null;
+        //    dgvMovie.ItemsSource = _movieService.GetSearchYear(fromYear, toYear);
+        //}
+
+        //private void dgvMovie_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        //{
+        //    if (dgvMovie.SelectedItems.Count > 0)
+        //    {
+        //        Movie _selected = dgvMovie.SelectedItems[0] as Movie;
+        //    }
+        //    else
+        //    {
+        //        _selected = null;
+        //    }
+        //}
+
+        //private void btnDelete_Click(object sender, RoutedEventArgs e)
+        //{
+        //    _selected = dgvMovie.SelectedItem as Movie;
+        //    if (_selected == null)
+        //    {
+        //        System.Windows.MessageBox.Show("Please select a certain movie to delete!", "Select one movie", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+        //        return;
+        //    }
+        //    DialogResult answer = (DialogResult)System.Windows.MessageBox.Show("Do you really want to delete this movie", "Confirm delete?", MessageBoxButton.YesNo, MessageBoxImage.Question);
+        //    if (answer == System.Windows.Forms.DialogResult.No)
+        //        return;
+
+        //    try
+        //    {
+        //        _movieService.DeleteMovie(_selected);
+        //        FillDataGridView();
+        //        _selected = null;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        System.Windows.MessageBox.Show("This movie cannot be deleted...!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        //    }
+        //}
+
 
         private void btnShowMovies_Click(object sender, RoutedEventArgs e)
         {
@@ -142,11 +304,12 @@ namespace PRN212_NET1806_HorrorMovies
             btnDelete.IsEnabled = false;
             btnSearch.IsEnabled = false;
             btnCreate.IsEnabled = false;
+            showMovie = false;
         }
 
         private void btnExit_Click(object sender, RoutedEventArgs e)
         {
-            Application.Current.Shutdown();
+            this.Close();
         }
     }
 }
